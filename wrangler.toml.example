@@ -1,0 +1,38 @@
+# WebDAV 直链代理 —— Cloudflare Pages 参考配置
+# 注意：通过 CloudFlareAssistant 部署时，环境变量与 KV 绑定在「项目设置」中配置，
+# 此文件仅作为本地 wrangler / 参考使用。
+
+name = "webdav-proxy"
+compatibility_date = "2026-06-16"
+
+[vars]
+APP_NAME = "我的网盘直链"
+WEBDAV_URL = "https://dav.jianguoyun.com/dav/"
+WEBDAV_USERNAME = "your-account@example.com"
+WEBDAV_PASSWORD = "your-app-password"
+WEBDAV_AUTH_TYPE = "basic"
+# WEBDAV_ROOT = "/"
+# WEBDAV_TOKEN = ""
+# WEBDAV_AUTH_HEADER = "Authorization"
+# WEBDAV_AUTH_PREFIX = "Bearer"
+# WEBDAV_EXTRA_HEADERS = "{\"User-Agent\":\"Mozilla/5.0\"}"
+# WEBDAV_CACHE_TTL = "0"
+# WEBDAV_TIMEOUT = "30"
+
+# 公开模式：true=无需分享码，false=必须携带有效分享码
+PUBLIC_MODE = "false"
+
+# 静态分享码（永久 / 限时）：
+# expireAt=0 永久；expireAt 为毫秒时间戳即限时；paths 支持 * 、** 、? 通配
+SHARE_CODES = '[{"code":"demo","paths":["**"],"expireAt":0,"note":"永久演示码"},{"code":"vip7d","paths":["/vip/**"],"expireAt":9999999999999,"note":"示例限时码"}]'
+
+# 管理接口令牌（用于动态创建/删除分享码）
+ADMIN_TOKEN = "please-change-me"
+
+# 是否允许跨域（默认 *）
+# CORS_ORIGIN = "*"
+
+# 可选 KV 绑定：用于动态分享码（项目设置中创建 KV namespace，binding 命名为 CODES_KV）
+# [[kv_namespaces]]
+# binding = "CODES_KV"
+# id = "your-kv-namespace-id"

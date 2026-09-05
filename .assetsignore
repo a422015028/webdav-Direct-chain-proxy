@@ -1,0 +1,4 @@
+# 静态资源忽略清单：本项目无需静态资源，全部走 Functions
+README.md
+*.md
+wrangler.toml.example
